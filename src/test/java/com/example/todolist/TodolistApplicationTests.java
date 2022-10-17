@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Persistence;
+import java.util.Map;
 
 @SpringBootTest
 class TodolistApplicationTests {
@@ -14,6 +15,8 @@ class TodolistApplicationTests {
 
 	@Test
 	void tryAddEntity(){
+		Map<String,String> env = System.getenv();
+
 		/*var entityManager = Persistence.createEntityManagerFactory("tutorials").createEntityManager();
 		Repository tutorialRepo= new TutorialRepo(entityManager);
 		Model m=new Model();
