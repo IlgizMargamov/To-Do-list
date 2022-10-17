@@ -4,3 +4,5 @@ services:
   todolist:
     build: .
     image: todolist
+    ports:
+      - "8080:8080"
