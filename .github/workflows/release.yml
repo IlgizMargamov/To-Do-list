@@ -20,13 +20,4 @@ jobs:
           java-version: 17
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - uses: actions/setup-node@v3
-      - name: Set up Node 14
-        with:
-          node-version: 14
-      - name: install Snyk CLI
-        run: npm install -g snyk
-      - name: run Snyk Open Source Test
-        run: snyk test
-      - name: run Snyk Code Test
-        run: snyk code test  
+        
