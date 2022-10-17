@@ -1,6 +1,7 @@
 package com.example.todolist;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Persistence;
@@ -12,6 +13,9 @@ class TodolistApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
+	@Value("git_secret_string")
+	private String secretUrl;
 
 	@Test
 	void tryAddEntity(){
