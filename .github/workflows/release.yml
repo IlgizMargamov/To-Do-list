@@ -38,4 +38,6 @@ jobs:
        - name: Publish JAR
          run: mvn -B release:prepare release:perform -DskipTests
          env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           JDBC_DATABASE_URL: ${{ secrets.JDBC_DATABASE_URL }}
+           JDBC_DATABASE_USER: ${{ secrets.JDBC_DATABASE_USER }}
+           JDBC_DATABASE_PASS: ${{ secrets.JDBC_DATABASE_PASS }}
