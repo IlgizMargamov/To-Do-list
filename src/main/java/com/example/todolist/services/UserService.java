@@ -22,13 +22,13 @@ public class UserService implements UserDetailsService {
     private final UserRepository m_userRepository;
 
     @Inject
-    public UserService(UserRepository userRepository){
-        m_userRepository=userRepository;
+    public UserService(UserRepository userRepository) {
+        m_userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userFromDb= m_userRepository.findByUsername(username);
+        User userFromDb = m_userRepository.findByUsername(username);
         return new org.springframework.security.core.userdetails.User(
                 userFromDb.getUsername(),
                 userFromDb.getPassword(),
@@ -37,13 +37,13 @@ public class UserService implements UserDetailsService {
                 ));
     }
 
-    private List<? extends GrantedAuthority> mapRolesToAuthorities(Set<UserRole> roles){
-        return roles.stream().map(r->new SimpleGrantedAuthority("ROLE_"+r.name())).collect(Collectors.toList());
+    private List<? extends GrantedAuthority> mapRolesToAuthorities(Set<UserRole> roles) {
+        return roles.stream().map(r -> new SimpleGrantedAuthority("ROLE_" + r.name())).collect(Collectors.toList());
     }
 
-    public void addUser(User user) throws Exception{
-        User userFromDb=m_userRepository.findByUsername(user.getUsername());
-        if (userFromDb != null){
+    public void addUser(User user) throws Exception {
+        User userFromDb = m_userRepository.findByUsername(user.getUsername());
+        if (userFromDb != null) {
             throw new IllegalArgumentException("User already exists");
         }
         user.setRoles(Collections.singleton(UserRole.USER));
