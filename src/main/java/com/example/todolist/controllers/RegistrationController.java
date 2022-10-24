@@ -39,8 +39,8 @@ public class RegistrationController {
     }
 
     @GetMapping("/")
-    public String registration1(){
-        return "registration";
+    public String index(){
+        return "index";
     }
 
     @PostMapping("/registration")
