@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Build-Jdk: 1.8.0
-Created-By: Maven Integration for Eclipse
+Created-By: Maven
 Main-Class:  com.example.todolist.TodolistApplication
