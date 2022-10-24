@@ -38,6 +38,11 @@ public class RegistrationController {
         return "registration";
     }
 
+    @GetMapping("/")
+    public String registration1(){
+        return "registration";
+    }
+
     @PostMapping("/registration")
     public String addUser(User user, Model model){
        try {
