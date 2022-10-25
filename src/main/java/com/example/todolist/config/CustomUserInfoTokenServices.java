@@ -51,10 +51,6 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
         this.clientId = clientId;
     }
 
-    public void setRestTemplate(OAuth2RestOperations restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
     public void setAuthoritiesExtractor(AuthoritiesExtractor authoritiesExtractor) {
         Assert.notNull(authoritiesExtractor, "AuthoritiesExtractor must not be null");
         this.authoritiesExtractor = authoritiesExtractor;
