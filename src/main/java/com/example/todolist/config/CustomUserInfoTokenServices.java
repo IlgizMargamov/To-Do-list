@@ -3,6 +3,8 @@ package com.example.todolist.config;
 import com.example.todolist.models.User;
 import com.example.todolist.models.UserRole;
 import com.example.todolist.repositories.UserRepository;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor;
@@ -27,7 +29,8 @@ import org.springframework.util.Assert;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
+@Setter
+@Getter
 public class CustomUserInfoTokenServices implements ResourceServerTokenServices {
     protected final Log logger = LogFactory.getLog(this.getClass());
     private String userInfoEndpointUrl;
@@ -46,26 +49,6 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
     public CustomUserInfoTokenServices(String userInfoEndpointUrl, String clientId) {
         this.userInfoEndpointUrl = userInfoEndpointUrl;
         this.clientId = clientId;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    public String getUserInfoEndpointUrl() {
-        return userInfoEndpointUrl;
-    }
-
-    public void setUserInfoEndpointUrl(String userInfoEndpointUrl) {
-        this.userInfoEndpointUrl = userInfoEndpointUrl;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
     }
 
     public void setRestTemplate(OAuth2RestOperations restTemplate) {
