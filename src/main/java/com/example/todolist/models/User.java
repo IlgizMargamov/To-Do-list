@@ -22,15 +22,19 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    @Setter
+    @Getter
+    private String googleUsername;
     private boolean isActive;
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
-    @CollectionTable(name="user_role", joinColumns = @JoinColumn(name= "user_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
 
-    public User(String username, String password){
-        this.username=username;
-        this.password=password;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
+
 }
