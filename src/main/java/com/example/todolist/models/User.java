@@ -22,6 +22,8 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    @Setter
+    @Getter
     private String googleUsername;
     private boolean isActive;
 
@@ -35,7 +37,4 @@ public class User {
         this.password = password;
     }
 
-    public void setGoogleUsername(String googleUsername) {
-        this.googleUsername = googleUsername;
-    }
 }
