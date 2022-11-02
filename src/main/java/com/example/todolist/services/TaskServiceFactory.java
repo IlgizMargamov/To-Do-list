@@ -17,13 +17,13 @@ public class TaskServiceFactory {
 
     @Inject
     public TaskServiceFactory(TaskRepository taskRepository) {
-        m_taskRepository=taskRepository;
+        m_taskRepository = taskRepository;
     }
 
-    public AbstractTaskService getService(){
+    public AbstractTaskService getService() {
         TaskMode taskMode = TaskMode.toTaskMode(this.tasksToRun);
 
-        switch (taskMode){
+        switch (taskMode) {
             case Simple -> {
                 return new SimpleTaskService(m_taskRepository);
             }

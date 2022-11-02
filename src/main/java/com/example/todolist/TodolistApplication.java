@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan // ищет сущности в пакетах местных
 @EnableJpaRepositories // ищет репозитории в пакетах
 public class TodolistApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(TodolistApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TodolistApplication.class, args);
+    }
 }
