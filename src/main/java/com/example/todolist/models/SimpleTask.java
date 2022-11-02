@@ -7,10 +7,12 @@ import lombok.Setter;
 import javax.persistence.Entity;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-public class SimpleTask extends AbstractTask{
-    public SimpleTask(String name){
+public class SimpleTask extends AbstractTask {
+    public SimpleTask(String name, String description) {
         m_name = name;
+        this.description = description;
     }
 }
