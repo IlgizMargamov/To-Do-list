@@ -39,13 +39,38 @@ public class TaskController {
     @GetMapping(value = "/task/create")
     public String createTask(Model model) {
         model.addAttribute("task", new SimpleTask());
+        model.addAttribute("button","Создать задачу");
         return "create_task";
+    }
+
+    @GetMapping(value = "/task/edit/{id}")
+    public String editTask(@PathVariable Long id, Model model)
+    {
+        var task = m_taskServiceFactory.getService().getTaskById(id);
+        model.addAttribute("task",task);
+        model.addAttribute("button","Изменить задачу");
+        return "create_task";
+    }
+
+    @PostMapping(value = "/task/edit/{id}")
+    public String editTask(@ModelAttribute("task") SimpleTask task)
+    {
+        AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
+        abstractTaskService.saveTask(task);
+         return "redirect:/tasks";
     }
 
     @PostMapping(value = "/task/create")
     public String createTask(@ModelAttribute("task") SimpleTask task) {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         abstractTaskService.saveTask(task);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping(value ="/task/delete/{id}")
+    public String deleteTask(@PathVariable Long id)
+    {
+        m_taskServiceFactory.getService().deleteTask(id);
         return "redirect:/tasks";
     }
 

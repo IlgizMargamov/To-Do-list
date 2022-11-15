@@ -53,6 +53,11 @@ public class SimpleTaskService extends AbstractTaskService {
         return task;
     }
 
+    @Override
+    public void deleteTask(Long id) {
+        m_taskRepository.findById(id).ifPresent(m_taskRepository::delete);
+    }
+
     // для полной инициализации bean,
     // иначе что-то может не успеть
     @PostConstruct

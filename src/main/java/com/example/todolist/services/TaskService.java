@@ -12,4 +12,6 @@ public interface TaskService {
     Task getTaskByUsername(String username);
 
     Task saveTask(Task task);
+
+    void deleteTask(Long id);
 }

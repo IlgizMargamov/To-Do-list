@@ -56,6 +56,10 @@ public abstract class AbstractTaskService implements TaskService {
                 .toList();
     }
 
+    public void deleteTask(Long id) {
+        m_tasks.removeIf(x -> Objects.equals(x.getId(), id));
+    }
+
     public Task saveTask(Task task) {
         return task;
     }
