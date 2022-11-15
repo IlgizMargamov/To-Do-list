@@ -39,7 +39,7 @@
 <div class="container">
   <div class="row py-2">
     <div class="col-12">
-      <form th:action="@{/task/create}" th:object="${task}" method="post">
+      <form th:action="@{/{action}(action=${button.startsWith('Создать')?'task/create':'task/edit/'+task.id})}" th:object="${task}" method="post">
         <div class="form-group">
           <label  class="description-from-type-label"  for="description">Название</label>
           <input type="text" class="form-control" id="name" th:field="*{m_name}" placeholder="Введите название задачи">
@@ -49,7 +49,7 @@
           <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Введите описание">
 
         </div>
-        <button type="submit" class="btn btn-success">Добавить задачу</button>
+        <button type="submit" class="btn btn-success" th:text="${button}"></button>
       </form>
     </div>
   </div>
