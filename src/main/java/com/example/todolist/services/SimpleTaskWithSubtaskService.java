@@ -12,8 +12,8 @@ public class SimpleTaskWithSubtaskService extends AbstractTaskService {
 
     public SimpleTaskWithSubtaskService(List<Task> tasks) {
         super(tasks);
-        tasks.add(new SimpleTask("c"));
-        tasks.add(new SimpleTask("d"));
+        tasks.add(new SimpleTask("c", "asd"));
+        tasks.add(new SimpleTask("d", "asd"));
     }
 
     public SimpleTaskWithSubtaskService() {
@@ -22,6 +22,6 @@ public class SimpleTaskWithSubtaskService extends AbstractTaskService {
 
     @Override
     public Task saveTask(Task task) {
-return task;
+        return task;
     }
 }

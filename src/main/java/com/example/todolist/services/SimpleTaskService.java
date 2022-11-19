@@ -1,9 +1,11 @@
 package com.example.todolist.services;
 
+import com.example.todolist.config.Helpers;
 import com.example.todolist.models.SimpleTask;
 import com.example.todolist.models.Task;
 import com.example.todolist.repositories.TaskRepository;
 import org.springframework.stereotype.Component;
+import com.example.todolist.config.Helpers.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -23,28 +25,44 @@ public class SimpleTaskService extends AbstractTaskService {
     }
 
     @Override
-    public List<Task> getTasks(){
+    public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
         m_taskRepository.findAll().forEach(tasks::add);
         return tasks;
     }
 
     @Override
-    public Task getTaskById(Long id){
+    public Task getTaskById(Long id) {
         return m_taskRepository.findById(id).get();
     }
 
     @Override
+    public Task getTaskByUsername(String username) {
+        return m_taskRepository.findAbstractTaskByUsername(username);
+    }
+
+    @Override
+    public List<Task> getTasksByUsername(String username) {
+        return m_taskRepository.findSimpleTasksByUsername(username);
+    }
+
+    @Override
     public Task saveTask(Task task) {
+        task.setUsername(Helpers.getCurrentUser());
         m_taskRepository.save((SimpleTask) task);
         return task;
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        m_taskRepository.findById(id).ifPresent(m_taskRepository::delete);
     }
 
     // для полной инициализации bean,
     // иначе что-то может не успеть
     @PostConstruct
     private void init() {
-        m_tasks.add(new SimpleTask("b"));
+        m_tasks.add(new SimpleTask("b", "asd"));
     }
 
 }

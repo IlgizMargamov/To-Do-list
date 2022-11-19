@@ -1,0 +1,19 @@
+.navbar
+{
+    background-color: #57b846;
+
+}
+.btn-success
+{
+    border-radius: 25px;
+    background-color: #57b846;
+    color: #eeeeee;
+}
+.bd-hide
+{
+    border: #c80000;
+}
+.btn-danger
+{
+    border-radius:25px;
+}

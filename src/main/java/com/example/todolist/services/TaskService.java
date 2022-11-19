@@ -9,5 +9,9 @@ public interface TaskService {
 
     Task getTaskById(Long id);
 
+    Task getTaskByUsername(String username);
+
     Task saveTask(Task task);
+
+    void deleteTask(Long id);
 }

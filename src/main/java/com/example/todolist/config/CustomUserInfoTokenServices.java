@@ -29,6 +29,7 @@ import org.springframework.util.Assert;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
 @Setter
 @Getter
 public class CustomUserInfoTokenServices implements ResourceServerTokenServices {
