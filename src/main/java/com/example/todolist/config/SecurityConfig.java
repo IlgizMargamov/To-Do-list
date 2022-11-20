@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .antMatchers("/registration", "/login","/css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/tasks", true).permitAll()
                 .and()
                 .logout().permitAll();
         http.addFilterBefore(ssoFilter(), UsernamePasswordAuthenticationFilter.class);

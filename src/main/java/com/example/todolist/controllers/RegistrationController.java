@@ -35,7 +35,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration() {
-        return "registration";
+        return "/registration";
     }
 
     @GetMapping("/")
@@ -50,7 +50,7 @@ public class RegistrationController {
             return "redirect:/login";
         } catch (Exception ex) {
             model.addAttribute("message", "User already exists");
-            return "registration";
+            return "/registration";
         }
     }
 

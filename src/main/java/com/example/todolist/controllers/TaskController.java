@@ -33,7 +33,7 @@ public class TaskController {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         var tasks = abstractTaskService.getTasksByUsername(Helpers.getCurrentUser());
         model.addAttribute("tasks", tasks);
-        return "index";
+        return "/index";
     }
 
     @GetMapping(value = "/task/create")
