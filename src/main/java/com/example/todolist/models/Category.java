@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Category {
     @Id
     @GeneratedValue
-    public long Id;
+    public Long Id;
     @Setter
     public String Name;
 

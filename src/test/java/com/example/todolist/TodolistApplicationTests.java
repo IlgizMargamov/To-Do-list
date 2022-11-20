@@ -2,6 +2,7 @@ package com.example.todolist;
 
 import com.example.todolist.models.Category;
 import com.example.todolist.repositories.CategoryRepo;
+import com.example.todolist.repositories.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,10 +23,11 @@ class TodolistApplicationTests {
 
 	@Test
 	@Inject
-	void tryAddEntity(CategoryRepo categoryRepo){
+	void tryAddEntity(TaskRepository taskRepository){
+		taskRepository.getSimpleTasksByCategoryId(75l);
 		Category category = new Category();
 		category.setName("all");
-		categoryRepo.save(category);
+		//categoryRepo.save(category);
 
 		/*var entityManager = Persistence.createEntityManagerFactory("tutorials").createEntityManager();
 		Repository tutorialRepo= new TutorialRepo(entityManager);

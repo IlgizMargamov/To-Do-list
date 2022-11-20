@@ -12,8 +12,8 @@ public class SimpleTaskWithSubtaskService extends AbstractTaskService {
 
     public SimpleTaskWithSubtaskService(List<Task> tasks) {
         super(tasks);
-        tasks.add(new SimpleTask("c", "asd",0));
-        tasks.add(new SimpleTask("d", "asd",0));
+        tasks.add(new SimpleTask("c", "asd",0l));
+        tasks.add(new SimpleTask("d", "asd",0l));
     }
 
     public SimpleTaskWithSubtaskService() {
