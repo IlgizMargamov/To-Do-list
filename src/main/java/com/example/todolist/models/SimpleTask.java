@@ -11,8 +11,11 @@ import javax.persistence.Entity;
 @Setter
 @NoArgsConstructor
 public class SimpleTask extends AbstractTask {
-    public SimpleTask(String name, String description) {
+    public int TaskId=0;
+
+    public SimpleTask(String name, String description, int taskId) {
         m_name = name;
-        this.description = description;
+        description = description;
+        TaskId=taskId;
     }
 }

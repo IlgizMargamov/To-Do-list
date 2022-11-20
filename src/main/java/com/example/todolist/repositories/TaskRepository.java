@@ -16,4 +16,6 @@ public interface TaskRepository extends CrudRepository<SimpleTask, Long> {
     SimpleTask findAbstractTaskByUsername(String username);
 
     List<Task> findSimpleTasksByUsername(String username);
+
+    List<Task> getSimpleTasksByTaskId(int taskId);
 }
