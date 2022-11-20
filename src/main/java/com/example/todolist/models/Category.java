@@ -13,8 +13,8 @@ import javax.persistence.Id;
 public class Category {
     @Id
     @GeneratedValue
-    public Long Id;
+    public Long id;
     @Setter
-    public String Name;
+    public String name;
 
 }
