@@ -22,9 +22,7 @@ class TodolistApplicationTests {
 	private String secretUrl;
 
 	@Test
-	@Inject
-	void tryAddEntity(TaskRepository taskRepository){
-		taskRepository.getSimpleTasksByCategoryId(75l);
+	void tryAddEntity(){
 		Category category = new Category();
 		category.setName("all");
 		//categoryRepo.save(category);
