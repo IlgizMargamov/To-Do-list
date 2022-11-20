@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 @Repository
 public interface CategoryRepo extends CrudRepository<Category, Long> {
-    Category getCategoryById(Long id);
+    Category findCategoryById(Long id);
 }
