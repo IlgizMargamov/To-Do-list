@@ -16,5 +16,7 @@ public class Category {
     public Long id;
     @Setter
     public String name;
+    @Setter
+    public String username;
 
 }
