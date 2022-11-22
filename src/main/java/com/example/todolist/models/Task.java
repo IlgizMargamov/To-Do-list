@@ -14,4 +14,8 @@ public interface Task extends Serializable {
     void setUsername(String username);
 
     String getDescription();
+
+    Long getCategoryId();
+
+    void setCategoryId(Long categoryId);
 }
