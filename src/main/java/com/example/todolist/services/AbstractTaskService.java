@@ -38,6 +38,13 @@ public abstract class AbstractTaskService implements TaskService {
                 .get();
     }
 
+    public List<Task> getTasksByCategoryId(Long id) {
+        return m_tasks
+                .stream()
+                .filter(x -> Objects.equals(x.getCategoryId(), id))
+                .toList();
+    }
+
     @Override
     public Task getTaskByUsername(String username) {
         return m_tasks

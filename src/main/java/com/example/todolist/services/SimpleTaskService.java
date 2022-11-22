@@ -58,6 +58,11 @@ public class SimpleTaskService extends AbstractTaskService {
         m_taskRepository.findById(id).ifPresent(m_taskRepository::delete);
     }
 
+    @Override
+    public List<Task> getTasksByCategoryId(Long id) {
+        return m_taskRepository.findSimpleTasksByCategoryId(id);
+    }
+
     // для полной инициализации bean,
     // иначе что-то может не успеть
     @PostConstruct
