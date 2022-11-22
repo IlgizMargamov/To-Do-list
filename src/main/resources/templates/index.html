@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-">
     <a class="navbar-brand" th:href="@{/}">ToDoList</a>
 
@@ -35,39 +34,91 @@
         </form>
     </div>
 </nav>
+<div class="container-fluid" th:action="@{/tasks/categoryId={id}(id=${category.id})}" th:method="get">
+    <div class="row">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" data-toggle="modal" data-target="#exampleModal">
+                    <span class="fs-5 d-none d-sm-inline font-weight">Создать категию</span>
+                </a>
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline font-weight-bold">Категории задач</span>
+                </a>
 
-<div class="container">
-    <div class="row py-2">
-        <div class="col-12">
-            <a class="btn btn-success" th:href="@{/task/create}">Add Todo</a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                    id="category">
+                    <li class="nav-item " th:each="category : ${categories}">
+                        <a th:href="@{/tasks/categoryId={category_id}(category_id=${category.getId()})}" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"
+                                                                th:text="${category.getName()}"
+                        ></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="col-12">
-            <table class="table ">
-                <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">User</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${tasks.isEmpty()}">
-                    <td class="text-center" colspan="5">No data</td>
-                </tr>
-                <tr th:each="task : ${tasks}">
-                    <th scope="row" th:text="*{task.id}"></th>
-                    <th scope="row" th:text="*{task.m_name}"></th>
-                    <th scope="row" th:text="*{task.description}"></th>
-                    <th scope="row" th:text="*{task.username}"></th>
-                    <td class="bd-hide">
-                        <a class="btn btn-success" th:href="@{/task/edit/{id}(id=${task.id})}"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" th:href="@{/task/delete/{id}(id=${task.id})}" ><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Создание категории</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{/tasks}" th:object="${category}" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Название категории</label>
+                                <input type="text" class="form-control" placeholder="Введите название" th:field="*{name}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row py-2">
+                <div class="col-12">
+                    <a class="btn btn-success" th:href="@{/task/create}">Add Todo</a>
+                </div>
+
+                <div class="col-12">
+                    <table class="table ">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">User</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${tasks.isEmpty()}">
+                            <td class="text-center" colspan="5">No data</td>
+                        </tr>
+                        <tr th:each="task : ${tasks}">
+                            <th scope="row" th:text="*{task.id}"></th>
+                            <th scope="row" th:text="*{task.m_name}"></th>
+                            <th scope="row" th:text="*{task.description}"></th>
+                            <th scope="row" th:text="*{task.username}"></th>
+                            <td class="bd-hide">
+                                <a class="btn btn-success" th:href="@{/task/edit/{id}(id=${task.id})}"><i
+                                        class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" th:href="@{/task/delete/{id}(id=${task.id})}"><i
+                                        class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
