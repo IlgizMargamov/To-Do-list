@@ -39,7 +39,7 @@ public class EntityController {
 
     @GetMapping(value = "/task/create")
     public String createTask(Model model) {
-        var categories = categoryService.getCategories();
+        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser());
         model.addAttribute("task", new SimpleTask());
         model.addAttribute("button", "Создать задачу");
         model.addAttribute("categories", categories);
@@ -58,7 +58,7 @@ public class EntityController {
     @GetMapping(value = "/task/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
         var task = m_taskServiceFactory.getService().getTaskById(id);
-        var categories = categoryService.getCategories();
+        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser());
         model.addAttribute("task", task);
         model.addAttribute("button", "Изменить задачу");
         model.addAttribute("categories", categories);

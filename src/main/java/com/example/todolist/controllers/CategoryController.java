@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CategoryController {
@@ -19,9 +20,10 @@ public class CategoryController {
     }
 
     @PostMapping(value ="/tasks")
-    public String createCategory(@ModelAttribute("category") Category category) {
+    public String createCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) {
         categoryService.save(category);
-        return "redirect:/tasks";
+        redirectAttributes.addAttribute("id",category.id);
+        return "redirect:/tasks/categoryId={id}";
     }
 
 }

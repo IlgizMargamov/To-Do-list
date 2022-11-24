@@ -47,6 +47,11 @@
 
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                     id="category">
+                    <li class="nav-item ">
+                        <a href="/tasks/categoryId=0" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Все задачи</span>
+                        </a>
+                    </li>
                     <li class="nav-item " th:each="category : ${categories}">
                         <a th:href="@{/tasks/categoryId={category_id}(category_id=${category.getId()})}" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"
