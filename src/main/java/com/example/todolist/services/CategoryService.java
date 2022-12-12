@@ -3,9 +3,9 @@ package com.example.todolist.services;
 import com.example.todolist.config.Helpers;
 import com.example.todolist.models.Category;
 import com.example.todolist.repositories.CategoryRepository;
-import com.google.inject.Inject;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
