@@ -34,7 +34,7 @@ public class TaskController {
     public String deleteTask(@PathVariable Long id)
     {
         m_taskServiceFactory.getService().deleteTask(id);
-        return "redirect:/tasks";
+        return "redirect:tasks";
     }
 
 

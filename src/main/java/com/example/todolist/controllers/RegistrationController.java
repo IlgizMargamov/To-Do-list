@@ -35,22 +35,22 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration() {
-        return "/registration";
+        return "registration";
     }
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/tasks";
+        return "redirect:tasks";
     }
 
     @PostMapping("/registration")
     public String addUser(User user, Model model) {
         try {
             m_userService.addUser(user);
-            return "redirect:/login";
+            return "redirect:login";
         } catch (Exception ex) {
             model.addAttribute("message", "User already exists");
-            return "/registration";
+            return "registration";
         }
     }
 
