@@ -3,7 +3,6 @@ package com.example.todolist.controllers;
 import com.example.todolist.config.Helpers;
 import com.example.todolist.models.Category;
 import com.example.todolist.models.SimpleTask;
-import com.example.todolist.repositories.CategoryRepository;
 import com.example.todolist.services.AbstractTaskService;
 import com.example.todolist.services.CategoryService;
 import com.example.todolist.services.TaskServiceFactory;
@@ -26,9 +25,10 @@ public class EntityController {
     }
 
     @GetMapping(value = "/tasks/categoryId={id}")
-    public String getTasks(@PathVariable Long id, Model model) {
+    public String getMainPage(@PathVariable Long id, Model model, String taskName) {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
-        var currentUsername = Helpers.getCurrentUser();
+        model.addAttribute("taskName",taskName);
+        var currentUsername = Helpers.getCurrentUser().orElseThrow(IllegalStateException::new);
         var tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
         var categories = categoryService.getCategoryByUsername(currentUsername);
         model.addAttribute("tasks", tasks);
@@ -39,7 +39,7 @@ public class EntityController {
 
     @GetMapping(value = "/task/create")
     public String createTask(Model model) {
-        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser());
+        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser().orElseThrow(IllegalStateException::new));
         model.addAttribute("task", new SimpleTask());
         model.addAttribute("button", "Создать задачу");
         model.addAttribute("categories", categories);
@@ -58,7 +58,7 @@ public class EntityController {
     @GetMapping(value = "/task/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
         var task = m_taskServiceFactory.getService().getTaskById(id);
-        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser());
+        var categories = categoryService.getCategoryByUsername(Helpers.getCurrentUser().orElseThrow(IllegalStateException::new));
         model.addAttribute("task", task);
         model.addAttribute("button", "Изменить задачу");
         model.addAttribute("categories", categories);

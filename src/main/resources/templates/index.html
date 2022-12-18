@@ -8,11 +8,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css" th:href="@{/css/index.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <title>ToDo list application</title>
 </head>
 
@@ -89,7 +92,15 @@
         </div>
 
         <div class="col">
-            <div class="row py-2">
+            <div class="row py-4">
+                <nav class="navbar navbar-light bg-white">
+                <div class="container">
+                    <form class="d-flex" th:action="@{/tasks/categoryId={id}(id=${category.id})}" method="get">
+                        <input class="form-control me-2" name="taskName" th:value="${taskName}" type="search" placeholder="Поиск" aria-label="Поиск">
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </nav>
                 <div class="col-12">
                     <a class="btn btn-success" th:href="@{/task/create}">Add Todo</a>
                 </div>

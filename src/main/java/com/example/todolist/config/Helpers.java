@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public class Helpers {
 
-    public static String getCurrentUser() {
+    public static Optional<String> getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            return authentication.getName();
+            return Optional.of(authentication.getName()) ;
         }
-        return null;
+        return Optional.empty();
     }
 }

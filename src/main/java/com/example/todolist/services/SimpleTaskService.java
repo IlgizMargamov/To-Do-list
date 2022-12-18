@@ -33,7 +33,7 @@ public class SimpleTaskService extends AbstractTaskService {
 
     @Override
     public Task getTaskById(Long id) {
-        return m_taskRepository.findById(id).get();
+        return m_taskRepository.findById(id).orElseThrow(IllegalStateException::new);
     }
 
     @Override
@@ -48,9 +48,13 @@ public class SimpleTaskService extends AbstractTaskService {
 
     @Override
     public Task saveTask(Task task) {
-        task.setUsername(Helpers.getCurrentUser());
+        task.setUsername(Helpers.getCurrentUser().orElseThrow(IllegalStateException::new));
         m_taskRepository.save((SimpleTask) task);
         return task;
+    }
+
+    public List<Task> getTasksByName(String taskName) {
+        return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
     }
 
     @Override

@@ -31,13 +31,12 @@ public class CategoryService {
 
     public Category getCategoryById(Long id)
     {
-        return categoryRepository.findById(id).get();
+        return categoryRepository.findById(id).orElseThrow(IllegalStateException::new);
     }
 
-    public Category save(Category category) {
-        category.setUsername(Helpers.getCurrentUser());
+    public void save(Category category) {
+        category.setUsername(Helpers.getCurrentUser().orElseThrow(IllegalStateException::new));
         categoryRepository.save(category);
-        return category;
     }
 
 }

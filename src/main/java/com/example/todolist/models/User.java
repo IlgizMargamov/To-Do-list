@@ -23,7 +23,7 @@ public class User {
     private String firstName;
     private String lastName;
     @Setter
-    @Getter
+    @Getter()
     private String googleUsername;
     private boolean isActive;
 
