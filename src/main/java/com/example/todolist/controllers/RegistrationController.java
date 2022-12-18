@@ -40,7 +40,7 @@ public class RegistrationController {
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/tasks";
+        return "redirect:/tasks/categoryId=0";
     }
 
     @PostMapping("/registration")
