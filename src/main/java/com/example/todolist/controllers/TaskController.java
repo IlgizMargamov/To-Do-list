@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.todolist.config.Helpers;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.inject.Inject;
 
@@ -31,10 +32,12 @@ public class TaskController {
 
 
     @GetMapping(value ="/task/delete/{id}")
-    public String deleteTask(@PathVariable Long id)
+    public String deleteTask(@PathVariable Long id, RedirectAttributes redirectAttributes)
     {
+        var categoryId = m_taskServiceFactory.getService().getTaskById(id).getCategoryId();
+        redirectAttributes.addAttribute("categoryId", categoryId);
         m_taskServiceFactory.getService().deleteTask(id);
-        return "redirect:tasks";
+        return "redirect:/tasks/categoryId={categoryId}";
     }
 
 

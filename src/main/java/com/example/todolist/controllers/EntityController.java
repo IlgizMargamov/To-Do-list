@@ -51,7 +51,7 @@ public class EntityController {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         abstractTaskService.saveTask(task);
         redirectAttributes.addAttribute("id", task.getCategoryId());
-        return "redirect:tasks/categoryId={id}";
+        return "redirect:/tasks/categoryId={id}";
     }
 
 
@@ -70,6 +70,6 @@ public class EntityController {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         abstractTaskService.saveTask(task);
         redirectAttributes.addAttribute("id", task.getCategoryId());
-        return "redirect:tasks/categoryId={id}";
+        return "redirect:/tasks/categoryId={id}";
     }
 }
