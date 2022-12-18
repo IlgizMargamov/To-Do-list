@@ -84,10 +84,10 @@ public class SecurityConfig {
     }
 
     private Filter ssoFilter() {
-        OAuth2ClientAuthenticationProcessingFilter googleFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/google");
-        OAuth2RestTemplate googleTemplate = new OAuth2RestTemplate(getGoogleCodeResourceDetails(), oAuth2ClientContext);
+        var googleFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/google");
+        var googleTemplate = new OAuth2RestTemplate(getGoogleCodeResourceDetails(), oAuth2ClientContext);
         googleFilter.setRestTemplate(googleTemplate);
-        CustomUserInfoTokenServices tokenServices = new CustomUserInfoTokenServices(getGoogleResource().getUserInfoUri(), getGoogleCodeResourceDetails().getClientId());
+        var tokenServices = new CustomUserInfoTokenServices(getGoogleResource().getUserInfoUri(), getGoogleCodeResourceDetails().getClientId());
         tokenServices.setRestTemplate(googleTemplate);
         googleFilter.setTokenServices(tokenServices);
         tokenServices.setUserRepository(userRepository);

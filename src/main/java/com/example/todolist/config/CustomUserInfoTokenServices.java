@@ -95,6 +95,7 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
 
     private OAuth2Authentication extractAuthentication(Map<String, Object> map) {
         System.out.println("EXTRACT AUTHENTICATION");
+        try  {
 
         for (Map.Entry<String, Object> e : map.entrySet()) {
             System.out.println(e.getKey() + " " + e.getValue().toString());
@@ -109,6 +110,11 @@ public class CustomUserInfoTokenServices implements ResourceServerTokenServices 
                 principal, "N/A", authorities);
         token.setDetails(map);
         return new OAuth2Authentication(request, token);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     protected Object getPrincipal(Map<String, Object> map) {
