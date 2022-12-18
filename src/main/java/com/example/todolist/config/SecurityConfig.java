@@ -45,6 +45,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
         // TODO
+        http.authorizeHttpRequests().anyRequest().permitAll();
         /*http.authorizeRequests()
                 .antMatchers("/registration", "/login","/css/**").permitAll()
                 .anyRequest().authenticated()
