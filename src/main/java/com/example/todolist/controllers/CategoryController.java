@@ -24,7 +24,7 @@ public class CategoryController {
     public String createCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) {
         categoryService.save(category);
         redirectAttributes.addAttribute("id",category.id);
-        return "redirect:/tasks/categoryId={id}";
+        return "redirect:tasks/categoryId={id}";
     }
 
 }
