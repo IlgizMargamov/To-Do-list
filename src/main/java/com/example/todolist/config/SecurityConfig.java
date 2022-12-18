@@ -45,14 +45,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
         // TODO
-        http.authorizeRequests()
+        /*http.authorizeRequests()
                 .antMatchers("/registration", "/login","/css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/tasks/categoryId=0", true).permitAll()
                 .and()
                 .logout().permitAll();
-        http.addFilterBefore(ssoFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(ssoFilter(), UsernamePasswordAuthenticationFilter.class);*/
         //http.csrf().disable();
 
         return http.build();
