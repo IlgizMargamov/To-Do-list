@@ -2,8 +2,6 @@ package com.example.todolist.repositories;
 
 import com.example.todolist.models.SimpleTask;
 import com.example.todolist.models.Task;
-import org.jboss.logging.annotations.Param;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,6 @@ public interface TaskRepository extends CrudRepository<SimpleTask, Long> {
     List<Task> findSimpleTasksByUsername(String username);
     List<Task> findSimpleTasksByCategoryId(Long categoryId);
 
-    List<Task> getSimpleTasksByM_name_nameLike(String taskName);
+    //List<Task> getSimpleTasksByM_name_nameLike(String taskName);
 
 }

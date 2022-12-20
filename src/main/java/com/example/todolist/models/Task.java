@@ -18,4 +18,6 @@ public interface Task extends Serializable {
     Long getCategoryId();
 
     void setCategoryId(Long categoryId);
+
+    String getFileName();
 }

@@ -54,7 +54,8 @@ public class SimpleTaskService extends AbstractTaskService {
     }
 
     public List<Task> getTasksByName(String taskName) {
-        return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
+        return new ArrayList<>();
+        //return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class SimpleTaskService extends AbstractTaskService {
     // иначе что-то может не успеть
     @PostConstruct
     private void init() {
-        m_tasks.add(new SimpleTask("b", "asd",0l));
+        //m_tasks.add(new SimpleTask("b", "asd",0l));
     }
 
 }

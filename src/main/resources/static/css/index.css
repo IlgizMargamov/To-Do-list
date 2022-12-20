@@ -17,6 +17,11 @@
 {
     border-radius:25px;
 }
+.btn-download{
+    border-radius:25px;
+    background-color: #484aff;
+    color: #eeeeee;
+}
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
