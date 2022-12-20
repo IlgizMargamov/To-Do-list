@@ -58,9 +58,20 @@ public class EntityController {
 
     @PostMapping(value = "/task/create")
     public String createTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        String fileName = handleFile(task, file, redirectAttributes);
+        if (fileName == null) return "create_task";
+        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
+
+        AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
+        abstractTaskService.saveTask(task);
+        redirectAttributes.addAttribute("id", task.getCategoryId());
+        return "redirect:/tasks/categoryId={id}";
+    }
+
+    private String handleFile(SimpleTask task, MultipartFile file, RedirectAttributes redirectAttributes) {
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "create_task";
+            return null;
         }
 
         var fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
@@ -71,12 +82,7 @@ public class EntityController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
-
-        AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
-        abstractTaskService.saveTask(task);
-        redirectAttributes.addAttribute("id", task.getCategoryId());
-        return "redirect:/tasks/categoryId={id}";
+        return fileName;
     }
 
 
@@ -90,8 +96,11 @@ public class EntityController {
         return "create_task";
     }
 
-    @PostMapping(value = "/task/edit/{id}")
-    public String editTask(@ModelAttribute("task") SimpleTask task, RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/task/edit/{id}") // TODO: download file
+    public String editTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        var fileName=handleFile(task, file, redirectAttributes);
+        if (fileName == null) return "create_task";
+        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         abstractTaskService.saveTask(task);
         redirectAttributes.addAttribute("id", task.getCategoryId());

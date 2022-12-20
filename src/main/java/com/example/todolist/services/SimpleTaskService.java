@@ -72,7 +72,7 @@ public class SimpleTaskService extends AbstractTaskService {
     // иначе что-то может не успеть
     @PostConstruct
     private void init() {
-        m_tasks.add(new SimpleTask("b", "asd",0l));
+        //m_tasks.add(new SimpleTask("b", "asd",0l));
     }
 
 }
