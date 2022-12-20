@@ -54,7 +54,8 @@ public class SimpleTaskService extends AbstractTaskService {
     }
 
     public List<Task> getTasksByName(String taskName) {
-        return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
+        return new ArrayList<>();
+        //return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
     }
 
     @Override

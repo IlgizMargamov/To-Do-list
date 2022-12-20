@@ -24,4 +24,5 @@ public class AbstractTask implements Task {
 
     protected String description;
     protected Long categoryId =0l;
+    protected String fileName;
 }
