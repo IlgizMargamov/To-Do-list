@@ -96,7 +96,7 @@ public class EntityController {
         return "create_task";
     }
 
-    @PostMapping(value = "/task/edit/{id}") // TODO: download file
+    @PostMapping(value = "/task/edit/{id}")
     public String editTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         var fileName=handleFile(task, file, redirectAttributes);
         if (fileName == null) return "create_task";
