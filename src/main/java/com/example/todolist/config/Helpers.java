@@ -20,7 +20,7 @@ public class Helpers {
     }
 
     public static String getUserFolderName() {
-        var folderPath = "./" + getCurrentUser().orElseThrow(IllegalStateException::new);
+        var folderPath = "./usersFolders" + getCurrentUser().orElseThrow(IllegalStateException::new);
         String s = folderPath + "/";
         if (!Files.exists(Path.of(folderPath))) {
             try {
