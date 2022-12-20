@@ -25,7 +25,6 @@ public class Helpers {
         if (!Files.exists(Path.of("./usersFolders"))){
             try {
                 Files.createDirectory(Path.of("./usersFolders"));
-                return s;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -33,7 +32,6 @@ public class Helpers {
         if (!Files.exists(Path.of(folderPath))) {
             try {
                 Files.createDirectory(Path.of(folderPath));
-                return s;
             } catch (IOException e) {
                 e.printStackTrace();
             }
