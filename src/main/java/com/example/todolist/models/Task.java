@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 public interface Task extends Serializable {
-    String getM_name();
+    String getName();
 
     Long getId();
 
