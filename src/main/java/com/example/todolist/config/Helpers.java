@@ -22,6 +22,14 @@ public class Helpers {
     public static String getUserFolderName() {
         var folderPath = "./usersFolders/" + getCurrentUser().orElseThrow(IllegalStateException::new);
         String s = folderPath + "/";
+        if (!Files.exists(Path.of("./usersFolders"))){
+            try {
+                Files.createDirectory(Path.of("./usersFolders"));
+                return s;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         if (!Files.exists(Path.of(folderPath))) {
             try {
                 Files.createDirectory(Path.of(folderPath));
