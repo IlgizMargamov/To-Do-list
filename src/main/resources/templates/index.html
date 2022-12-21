@@ -102,15 +102,14 @@
                     </form>
                 </div>
             </nav>
-                <div class="col-12">
+                <div class="col-11">
                     <a class="btn btn-success" th:href="@{/task/create}">Add Todo</a>
                 </div>
 
                 <div class="col-12">
                     <table class="table ">
-                        <thead>
+                        <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">User</th>
@@ -122,7 +121,6 @@
                             <td class="text-center" colspan="5">No data</td>
                         </tr>
                         <tr th:each="task : ${tasks}">
-                            <th scope="row" th:text="*{task.id}"></th>
                             <th scope="row" th:text="*{task.name}"></th>
                             <th scope="row" th:text="*{task.description}"></th>
                             <th scope="row" th:text="*{task.username}"></th>
@@ -131,8 +129,8 @@
                                         class="fas fa-edit"></i></a>
                                 <a class="btn btn-danger" th:href="@{/task/delete/{id}(id=${task.id})}"><i
                                         class="far fa-trash-alt"></i></a>
-                                <a th:download="*{task.fileName}" download class="btn btn-download" th:href="@{/task/download/{id}(id=${task.id})}">
-                                    <i class="bi bi-download"></i></a>
+                                <a class="btn btn-download" th:download="*{task.fileName}" th:href="@{/task/download/{id}(id=${task.id})}">
+                                    <i class="far fa fa-download"></i></a>
                             </td>
                         </tr>
                         </tbody>
