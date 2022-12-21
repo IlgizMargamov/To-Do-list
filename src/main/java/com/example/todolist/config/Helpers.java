@@ -2,9 +2,11 @@ package com.example.todolist.config;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
 
 public class Helpers {
@@ -15,5 +17,26 @@ public class Helpers {
             return Optional.of(authentication.getName()) ;
         }
         return Optional.empty();
+    }
+
+    public static String getUserFolderName() {
+        var folderPath = "./usersFolders/" + getCurrentUser().orElseThrow(IllegalStateException::new);
+        String s = folderPath + "/";
+        if (!Files.exists(Path.of("./usersFolders"))){
+            try {
+                Files.createDirectory(Path.of("./usersFolders"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (!Files.exists(Path.of(folderPath))) {
+            try {
+                Files.createDirectory(Path.of(folderPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return s;
     }
 }

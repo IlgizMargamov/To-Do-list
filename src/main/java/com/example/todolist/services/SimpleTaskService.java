@@ -52,10 +52,8 @@ public class SimpleTaskService extends AbstractTaskService {
         m_taskRepository.save((SimpleTask) task);
         return task;
     }
-
     public List<Task> getSimpleTasksByNameLikeAndUsername(String taskName, String username) {
         return m_taskRepository.getSimpleTasksByNameLikeAndUsername(taskName, username);
-    }
 
     @Override
     public void deleteTask(Long id) {
@@ -71,7 +69,7 @@ public class SimpleTaskService extends AbstractTaskService {
     // иначе что-то может не успеть
     @PostConstruct
     private void init() {
-        m_tasks.add(new SimpleTask("b", "asd",0l));
+        //m_tasks.add(new SimpleTask("b", "asd",0l));
     }
 
 }

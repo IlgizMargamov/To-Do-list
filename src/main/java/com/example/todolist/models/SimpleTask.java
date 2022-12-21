@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class SimpleTask extends AbstractTask {
 
-    public SimpleTask(String name, String description, Long categoryId) {
+    public SimpleTask(String name, String description, Long categoryId, String fileName) {
         this.name = name;
         this.description= description;
         this.categoryId = categoryId;
