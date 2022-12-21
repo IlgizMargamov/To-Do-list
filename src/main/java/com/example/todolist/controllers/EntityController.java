@@ -71,7 +71,7 @@ public class EntityController {
         var currentUsername = Helpers.getCurrentUser().orElseThrow(IllegalStateException::new);
         java.util.List<com.example.todolist.models.Task> tasks;
         if (taskName != null) {
-            tasks = id == 0 ? abstractTaskService.getSimpleTasksByNameLikeAndUsername("курсач", currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+            tasks = id == 0 ? abstractTaskService.getSimpleTasksByNameLikeAndUsername(taskName, currentUsername) : abstractTaskService.getTasksByCategoryId(id);
         } else {
             tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
         }
