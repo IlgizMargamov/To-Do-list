@@ -3,6 +3,7 @@ package com.example.todolist.controllers;
 import com.example.todolist.config.Helpers;
 import com.example.todolist.models.Category;
 import com.example.todolist.models.SimpleTask;
+import com.example.todolist.repositories.TaskRepository;
 import com.example.todolist.services.AbstractTaskService;
 import com.example.todolist.services.CategoryService;
 import com.example.todolist.services.TaskServiceFactory;
@@ -27,11 +28,14 @@ import java.util.Objects;
 public class EntityController {
     private final TaskServiceFactory m_taskServiceFactory;
     private final CategoryService categoryService;
+    private final TaskRepository taskRepository;
 
     @Inject // universal for any objects in java (probably)
-    public EntityController(TaskServiceFactory taskServiceFactory, CategoryService categoryService) {
+    public EntityController(TaskServiceFactory taskServiceFactory, CategoryService categoryService,
+                            TaskRepository taskRepository) {
         m_taskServiceFactory = taskServiceFactory;
         this.categoryService = categoryService;
+        this.taskRepository = taskRepository;
     }
 
     @GetMapping(value = "/tasks/categoryId={id}")
@@ -97,8 +101,8 @@ public class EntityController {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         redirectAttributes.addAttribute("id", task.getCategoryId());
         String fileName = handleFile(task, file, redirectAttributes);
-        if (fileName == null) return "redirect:/tasks/categoryId={id}";
         abstractTaskService.saveTask(task);
+        if (fileName == null) return "redirect:/tasks/categoryId={id}";
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         return "redirect:/tasks/categoryId={id}";
     }
@@ -115,12 +119,14 @@ public class EntityController {
 
     @PostMapping(value = "/task/edit/{id}")
     public String editTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-        var fileName=handleFile(task, file, redirectAttributes);
-        redirectAttributes.addAttribute("id", task.getCategoryId());
-        if (fileName == null) return "redirect:/tasks/categoryId={id}";
-        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
+        var currentTaskFileName = abstractTaskService.getTaskById(task.getId()).getFileName();
+        task.setFileName(currentTaskFileName);
+        var fileName = handleFile(task, file, redirectAttributes);
+        redirectAttributes.addAttribute("id", task.getCategoryId());
         abstractTaskService.saveTask(task);
+        //if (fileName == null) return "redirect:/tasks/categoryId={id}";
+        //redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         return "redirect:/tasks/categoryId={id}";
     }
 
@@ -133,7 +139,7 @@ public class EntityController {
             response.setContentType("application/*");
             String headerKey = "Content-Disposition";
             String headerValue = String.format("attachment; filename=\"%s\"", task.getFileName());
-            response.setHeader(headerKey,  headerValue);
+            response.setHeader(headerKey, headerValue);
             FileInputStream inputStream;
             try {
                 inputStream = new FileInputStream(fileName);
