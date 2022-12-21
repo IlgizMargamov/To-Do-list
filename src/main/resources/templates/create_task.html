@@ -57,11 +57,11 @@
                 </div>
                 <div class="form-group">
                     <label class="description-from-type-label" for="description">Загрузить файл</label>
-                    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-                    <a th:download="${task.fileName}"
-                       th:text="${task.fileName}"
+                    <p th:text="${message}" th:if="${message!=null}" class="alert alert-primary"></p>
+                    <a th:download="*{fileName}"
+                       th:text="*{fileName}"
 
-                       th:if="${task.fileName ne null}"
+                       th:if="*{fileName!=null}"
                        class="btn btn-download"
                        th:href="@{/task/download/{id}(id=${task.id})}">
                     </a>

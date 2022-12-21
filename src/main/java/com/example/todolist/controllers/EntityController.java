@@ -95,10 +95,10 @@ public class EntityController {
     @PostMapping(value = "/task/create")
     public String createTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
-        abstractTaskService.saveTask(task);
         redirectAttributes.addAttribute("id", task.getCategoryId());
         String fileName = handleFile(task, file, redirectAttributes);
         if (fileName == null) return "redirect:/tasks/categoryId={id}";
+        abstractTaskService.saveTask(task);
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         return "redirect:/tasks/categoryId={id}";
     }
@@ -116,11 +116,11 @@ public class EntityController {
     @PostMapping(value = "/task/edit/{id}")
     public String editTask(@ModelAttribute("task") SimpleTask task, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         var fileName=handleFile(task, file, redirectAttributes);
-        if (fileName == null) return "redirect:/tasks/categoryId={"+task.getCategoryId()+"}";
+        redirectAttributes.addAttribute("id", task.getCategoryId());
+        if (fileName == null) return "redirect:/tasks/categoryId={id}";
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
         abstractTaskService.saveTask(task);
-        redirectAttributes.addAttribute("id", task.getCategoryId());
         return "redirect:/tasks/categoryId={id}";
     }
 
