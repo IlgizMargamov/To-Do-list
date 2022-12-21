@@ -41,7 +41,7 @@
             <form th:action="@{/{action}(action=${button.startsWith('Создать')?'task/create':'task/edit/'+task.id})}" th:object="${task}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="description-from-type-label" for="description">Название</label>
-                    <input type="text" class="form-control" id="name" th:field="*{m_name}"
+                    <input type="text" class="form-control" id="name" th:field="*{name}"
                            placeholder="Введите название задачи">
                 </div>
                 <div class="form-group">

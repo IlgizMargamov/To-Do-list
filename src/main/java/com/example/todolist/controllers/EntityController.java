@@ -35,13 +35,49 @@ public class EntityController {
     }
 
     @GetMapping(value = "/tasks/categoryId={id}")
+    public String getMainPage(@PathVariable Long id, Model model) {
+        AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
+        var currentUsername = Helpers.getCurrentUser().orElseThrow(IllegalStateException::new);
+        java.util.List<com.example.todolist.models.Task> tasks;
+        tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+
+        model.addAttribute("tasks", tasks);
+        //var tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+        var categories = categoryService.getCategoryByUsername(currentUsername);
+        model.addAttribute("category", new Category()); //TODO: категория дважды создается при каждом обращение к tasks
+        model.addAttribute("categories", categories);
+        return "index";
+    }
+
+    @GetMapping(value = "/tasks/search")
+    public String getPageWithSearch(Model model, String taskName) {
+        if ("".equals(taskName))
+            return "redirect:/tasks/categoryId=0";
+        AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
+        var currentUsername = Helpers.getCurrentUser().orElseThrow(IllegalStateException::new);
+        var tasks = abstractTaskService.getSimpleTasksByNameLikeAndUsername(taskName, currentUsername);
+        model.addAttribute("tasks", tasks);
+        //var tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+        var categories = categoryService.getCategoryByUsername(currentUsername);
+        model.addAttribute("category", new Category()); //TODO: категория дважды создается при каждом обращение к tasks
+        model.addAttribute("categories", categories);
+        return "index";
+    }
+
+    @PostMapping(value = "/tasks/categoryId={id}")
     public String getMainPage(@PathVariable Long id, Model model, String taskName) {
         AbstractTaskService abstractTaskService = m_taskServiceFactory.getService();
-        model.addAttribute("taskName", taskName);
+        // model.addAttribute("taskName",taskName);
         var currentUsername = Helpers.getCurrentUser().orElseThrow(IllegalStateException::new);
-        var tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
-        var categories = categoryService.getCategoryByUsername(currentUsername);
+        java.util.List<com.example.todolist.models.Task> tasks;
+        if (taskName != null) {
+            tasks = id == 0 ? abstractTaskService.getSimpleTasksByNameLikeAndUsername("курсач", currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+        } else {
+            tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+        }
         model.addAttribute("tasks", tasks);
+        //var tasks = id == 0 ? abstractTaskService.getTasksByUsername(currentUsername) : abstractTaskService.getTasksByCategoryId(id);
+        var categories = categoryService.getCategoryByUsername(currentUsername);
         model.addAttribute("category", new Category()); //TODO: категория дважды создается при каждом обращение к tasks
         model.addAttribute("categories", categories);
         return "index";

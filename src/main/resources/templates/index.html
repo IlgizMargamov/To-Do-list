@@ -95,9 +95,10 @@
             <div class="row py-4">
                 <nav class="navbar navbar-light bg-white">
                 <div class="container">
-                    <form class="d-flex" th:action="@{/tasks/categoryId={id}(id=${category.id})}" method="get">
-                        <input class="form-control me-2" name="taskName" th:value="${taskName}" type="search" placeholder="Поиск" aria-label="Поиск">
+                    <form class="d-flex" th:action="@{/tasks/search}" method="get">
+                        <input class="form-control me-2" name="taskName" th:value="${taskName}" type="text" placeholder="Поиск" aria-label="Поиск">
                         <button class="btn btn-outline-success" type="submit">Поиск</button>
+                        <input class="btn btn-outline-success" type="reset" value="Сбросить">
                     </form>
                 </div>
             </nav>
@@ -122,7 +123,7 @@
                         </tr>
                         <tr th:each="task : ${tasks}">
                             <th scope="row" th:text="*{task.id}"></th>
-                            <th scope="row" th:text="*{task.m_name}"></th>
+                            <th scope="row" th:text="*{task.name}"></th>
                             <th scope="row" th:text="*{task.description}"></th>
                             <th scope="row" th:text="*{task.username}"></th>
                             <td class="bd-hide">

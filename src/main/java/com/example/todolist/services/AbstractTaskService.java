@@ -38,10 +38,10 @@ public abstract class AbstractTaskService implements TaskService {
                 .get();
     }
 
-    public List<Task> getTasksByCategoryId(Long id) {
+    public List<Task> getSimpleTasksByNameLikeAndUsername(String taskName, String username) {
         return m_tasks
                 .stream()
-                .filter(x -> Objects.equals(x.getCategoryId(), id))
+                .filter(x -> Objects.equals(x.getCategoryId(), taskName))
                 .toList();
     }
 
@@ -54,6 +54,13 @@ public abstract class AbstractTaskService implements TaskService {
                 .stream()
                 .findFirst()
                 .get();
+    }
+
+    public List<Task> getTasksByCategoryId(Long id) {
+        return m_tasks
+                .stream()
+                .filter(x -> Objects.equals(x.getCategoryId(), id))
+                .toList();
     }
 
     public List<Task> getTasksByUsername(String username) {

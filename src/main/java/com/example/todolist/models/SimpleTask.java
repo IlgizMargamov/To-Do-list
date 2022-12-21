@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 public class SimpleTask extends AbstractTask {
 
     public SimpleTask(String name, String description, Long categoryId, String fileName) {
-        m_name = name;
+        this.name = name;
         this.description= description;
         this.categoryId = categoryId;
     }

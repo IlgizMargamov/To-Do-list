@@ -18,7 +18,7 @@ public class AbstractTask implements Task {
     @GeneratedValue
     protected Long Id;
 
-    protected String m_name;
+    protected String name;
 
     protected String username;
 

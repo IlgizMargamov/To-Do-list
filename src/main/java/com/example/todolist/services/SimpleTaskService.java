@@ -52,11 +52,8 @@ public class SimpleTaskService extends AbstractTaskService {
         m_taskRepository.save((SimpleTask) task);
         return task;
     }
-
-    public List<Task> getTasksByName(String taskName) {
-        return new ArrayList<>();
-        //return m_taskRepository.getSimpleTasksByM_name_nameLike(taskName);
-    }
+    public List<Task> getSimpleTasksByNameLikeAndUsername(String taskName, String username) {
+        return m_taskRepository.getSimpleTasksByNameLikeAndUsername(taskName, username);
 
     @Override
     public void deleteTask(Long id) {
