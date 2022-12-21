@@ -33,7 +33,7 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <button sec:authorize="isAuthenticated()" class="btn link my-2 my-sm-0">Logout</button>
+            <button sec:authorize="isAuthenticated()" class="btn link my-2 my-sm-0">Выход</button>
         </form>
     </div>
 </nav>
@@ -110,10 +110,9 @@
                     <table class="table ">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">User</th>
-                            <th scope="col">File</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Описание</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -123,7 +122,6 @@
                         <tr th:each="task : ${tasks}">
                             <th scope="row" th:text="*{task.name}"></th>
                             <th scope="row" th:text="*{task.description}"></th>
-                            <th scope="row" th:text="*{task.username}"></th>
                             <td class="bd-hide">
                                 <a class="btn btn-success" th:href="@{/task/edit/{id}(id=${task.id})}"><i
                                         class="fas fa-edit"></i></a>
