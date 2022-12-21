@@ -54,6 +54,7 @@ public class SimpleTaskService extends AbstractTaskService {
     }
     public List<Task> getSimpleTasksByNameLikeAndUsername(String taskName, String username) {
         return m_taskRepository.getSimpleTasksByNameLikeAndUsername(taskName, username);
+    }
 
     @Override
     public void deleteTask(Long id) {
